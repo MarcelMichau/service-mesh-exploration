@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  greeting-service:
+    build:
+      context: ./greeting-service
+      dockerfile: Dockerfile
+    ports:
+      - '3000:80'
+  number-service:
+    build:
+      context: ./number-service
+      dockerfile: Dockerfile
+    ports:
+      - '3001:80'
+  time-service:
+    build:
+      context: ./time-service
+      dockerfile: Dockerfile
+    ports:
+      - '3002:80'
