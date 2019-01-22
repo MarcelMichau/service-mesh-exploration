@@ -39,6 +39,21 @@ app.get('/with-time', async (req, res) => {
 	}
 });
 
+app.get('/with-secret', async (req, res) => {
+	try {
+		const response = await fetch('http://secret-service/');
+		const result = await response.json();
+
+		res.json({
+			message: `${buildMessage()}, along with a message from secret service: ${
+				result.message
+			}`
+		});
+	} catch (ex) {
+		res.json({ error: ex });
+	}
+});
+
 app.listen(port, () =>
 	console.log(`greeting-service listening on port ${port}!`)
 );

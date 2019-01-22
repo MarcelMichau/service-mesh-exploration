@@ -1,21 +1,21 @@
-version: '3.7'
+version: '3'
 
 services:
   greeting-service:
-    build:
-      context: ./greeting-service
-      dockerfile: Dockerfile
+    image: marcelmichau/service-mesh-exploration-greeting-service
+    build: ./greeting-service
     ports:
       - '3000:80'
   number-service:
-    build:
-      context: ./number-service
-      dockerfile: Dockerfile
+    image: marcelmichau/service-mesh-exploration-number-service
+    build: ./number-service
     ports:
       - '3001:80'
   time-service:
-    build:
-      context: ./time-service
-      dockerfile: Dockerfile
+    image: marcelmichau/service-mesh-exploration-time-service
+    build: ./time-service
     ports:
       - '3002:80'
+  secret-service:
+    image: marcelmichau/service-mesh-exploration-secret-service
+    build: ./secret-service

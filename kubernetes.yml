@@ -1,0 +1,153 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-service
+  labels:
+    app: greeting-service
+spec:
+  selector:
+    matchLabels:
+      app: greeting-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: greeting-service
+    spec:
+      containers:
+        - name: greeting-service
+          image: marcelmichau/service-mesh-exploration-greeting-service
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greeting-service
+  labels:
+    app: greeting-service
+spec:
+  type: 'NodePort'
+  ports:
+    - protocol: TCP
+      name: 'http'
+      port: 80
+      nodePort: 30000
+      targetPort: 80
+  selector:
+    app: greeting-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: number-service
+  labels:
+    app: number-service
+spec:
+  selector:
+    matchLabels:
+      app: number-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: number-service
+    spec:
+      containers:
+        - name: number-service
+          image: marcelmichau/service-mesh-exploration-number-service
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: number-service
+  labels:
+    app: number-service
+spec:
+  type: 'NodePort'
+  ports:
+    - protocol: TCP
+      name: 'http'
+      port: 80
+      nodePort: 30001
+      targetPort: 80
+  selector:
+    app: number-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-service
+  labels:
+    app: time-service
+spec:
+  selector:
+    matchLabels:
+      app: time-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: time-service
+    spec:
+      containers:
+        - name: time-service
+          image: marcelmichau/service-mesh-exploration-time-service
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-service
+  labels:
+    app: time-service
+spec:
+  type: 'NodePort'
+  ports:
+    - protocol: TCP
+      name: 'http'
+      port: 80
+      nodePort: 30002
+      targetPort: 80
+  selector:
+    app: time-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-service
+  labels:
+    app: secret-service
+spec:
+  selector:
+    matchLabels:
+      app: secret-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: secret-service
+    spec:
+      containers:
+        - name: secret-service
+          image: marcelmichau/service-mesh-exploration-secret-service
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secret-service
+  labels:
+    app: secret-service
+spec:
+  ports:
+    - protocol: TCP
+      name: 'http'
+      port: 80
+      targetPort: 80
+  selector:
+    app: secret-service
