@@ -22,7 +22,7 @@ app.get('/', (req, res) =>
 
 app.get('/with-greeting', async (req, res) => {
 	try {
-		const response = await fetch('http://greeting-service/');
+		const response = await fetch(`http://${process.env.GREETING_SERVICE_URL}/`);
 		const result = await response.json();
 
 		res.json({
@@ -37,7 +37,7 @@ app.get('/with-greeting', async (req, res) => {
 
 app.get('/with-time', async (req, res) => {
 	try {
-		const response = await fetch('http://time-service/');
+		const response = await fetch(`http://${process.env.TIME_SERVICE_URL}/`);
 		const result = await response.json();
 
 		res.json({

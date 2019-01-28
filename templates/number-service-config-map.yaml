@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-number-service-config-map
+data:
+  GREETING_SERVICE_URL: {{ include "..fullname" . }}-greeting-service
+  TIME_SERVICE_URL: {{ include "..fullname" . }}-time-service

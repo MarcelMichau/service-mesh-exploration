@@ -11,7 +11,7 @@ app.get('/', (req, res) => res.json({ message: `${buildMessage()}!` }));
 
 app.get('/with-number', async (req, res) => {
 	try {
-		const response = await fetch('http://number-service/');
+		const response = await fetch(`http://${process.env.NUMBER_SERVICE_URL}/`);
 		const result = await response.json();
 
 		res.json({
@@ -26,7 +26,7 @@ app.get('/with-number', async (req, res) => {
 
 app.get('/with-time', async (req, res) => {
 	try {
-		const response = await fetch('http://time-service/');
+		const response = await fetch(`http://${process.env.TIME_SERVICE_URL}/`);
 		const result = await response.json();
 
 		res.json({
@@ -41,7 +41,7 @@ app.get('/with-time', async (req, res) => {
 
 app.get('/with-secret', async (req, res) => {
 	try {
-		const response = await fetch('http://secret-service/');
+		const response = await fetch(`http://${process.env.SECRET_SERVICE_URL}/`);
 		const result = await response.json();
 
 		res.json({

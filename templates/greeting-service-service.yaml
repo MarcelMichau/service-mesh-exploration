@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "..fullname" . }}-greeting-service
+  labels:
+    app.kubernetes.io/name: {{ include "..name" . }}-greeting-service
+    helm.sh/chart: {{ include "..chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}-greeting-service
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.greetingService.service.type }}
+  ports:
+    - port: {{ .Values.greetingService.service.port }}
+      nodePort: {{ .Values.greetingService.service.nodePort }}
+      targetPort: {{ .Values.greetingService.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "..name" . }}-greeting-service
+    app.kubernetes.io/instance: {{ .Release.Name }}-greeting-service

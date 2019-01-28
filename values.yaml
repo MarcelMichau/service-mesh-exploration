@@ -1,0 +1,67 @@
+greetingService:
+  replicaCount: 1
+
+  image:
+    repository: marcelmichau/service-mesh-exploration-greeting-service
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  nameOverride: ""
+  fullnameOverride: ""
+
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30000
+    targetPort: 80
+
+numberService:
+  replicaCount: 1
+
+  image:
+    repository: marcelmichau/service-mesh-exploration-number-service
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  nameOverride: ""
+  fullnameOverride: ""
+
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30001
+    targetPort: 80
+
+timeService:
+  replicaCount: 1
+
+  image:
+    repository: marcelmichau/service-mesh-exploration-time-service
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  nameOverride: ""
+  fullnameOverride: ""
+
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30002
+    targetPort: 80
+
+secretService:
+  replicaCount: 1
+
+  image:
+    repository: marcelmichau/service-mesh-exploration-secret-service
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  nameOverride: ""
+  fullnameOverride: ""
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+

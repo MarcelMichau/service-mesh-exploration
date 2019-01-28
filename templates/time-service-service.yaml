@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "..fullname" . }}-time-service
+  labels:
+    app.kubernetes.io/name: {{ include "..name" . }}-time-service
+    helm.sh/chart: {{ include "..chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}-time-service
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.timeService.service.type }}
+  ports:
+    - port: {{ .Values.timeService.service.port }}
+      nodePort: {{ .Values.timeService.service.nodePort }}
+      targetPort: {{ .Values.timeService.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "..name" . }}-time-service
+    app.kubernetes.io/instance: {{ .Release.Name }}-time-service
