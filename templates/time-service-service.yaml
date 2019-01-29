@@ -11,7 +11,6 @@ spec:
   type: {{ .Values.timeService.service.type }}
   ports:
     - port: {{ .Values.timeService.service.port }}
-      nodePort: {{ .Values.timeService.service.nodePort }}
       targetPort: {{ .Values.timeService.service.targetPort }}
       protocol: TCP
       name: http

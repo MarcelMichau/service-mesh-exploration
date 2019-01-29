@@ -11,7 +11,6 @@ spec:
   type: {{ .Values.numberService.service.type }}
   ports:
     - port: {{ .Values.numberService.service.port }}
-      nodePort: {{ .Values.numberService.service.nodePort }}
       targetPort: {{ .Values.numberService.service.targetPort }}
       protocol: TCP
       name: http
