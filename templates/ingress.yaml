@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "..fullname" . }}-ingress
+  labels:
+    app.kubernetes.io/name: {{ include "..name" . }}-ingress
+    helm.sh/chart: {{ include "..chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}-ingress
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ include "..fullname" . }}-greeting-service
+          servicePort: 80
+      - path: /greeting-service
+        backend:
+          serviceName: {{ include "..fullname" . }}-greeting-service
+          servicePort: 80
+      - path: /number-service
+        backend:
+          serviceName: {{ include "..fullname" . }}-number-service
+          servicePort: 80
+      - path: /time-service
+        backend:
+          serviceName: {{ include "..fullname" . }}-time-service
+          servicePort: 80

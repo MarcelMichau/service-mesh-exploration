@@ -10,9 +10,8 @@ greetingService:
   fullnameOverride: ""
 
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
-    nodePort: 30000
     targetPort: 80
 
 numberService:
@@ -27,9 +26,8 @@ numberService:
   fullnameOverride: ""
 
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
-    nodePort: 30001
     targetPort: 80
 
 timeService:
@@ -44,9 +42,8 @@ timeService:
   fullnameOverride: ""
 
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
-    nodePort: 30002
     targetPort: 80
 
 secretService:
